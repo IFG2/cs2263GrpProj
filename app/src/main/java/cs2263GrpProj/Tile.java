@@ -17,41 +17,62 @@
 
 package cs2263GrpProj;
 
-// imports
-import java.util.ArrayList;
+    //imports
 
-public class Player {
+public class Tile {
 
-    //instance variables
-    public String name;
-    public ArrayList<String> hand;
-    public int balance;
-    public ArrayList<Stock> stocks;
+    // instance variables
+    private int number;
+    private String letter;
+    private final String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
 
     /**
-     * Minimal Constructor
-     * @param name
+     * Constructor
+     * @param number
+     * @param letter
      */
-    public Player(String name){
-        this.name = name;
-        hand = new ArrayList<String>(6);
-        balance = 6000;
-        stocks = new ArrayList<Stock>(7);
+    public Tile(int number, String letter){
+        this.number = number;
+        this.letter = letter;
     }
 
     /**
-     * Full Constructor
-     * @param name
-     * @param hand
-     * @param balance
-     * @param stocks
-     * @return
+     * Null constructor
      */
-    public Player(String name, ArrayList<String> hand, int balance, ArrayList<Stock> stocks){
-        this.name = name;
-        this.hand = hand;
-        this.balance = balance;
-        this.stocks = stocks;
+    public Tile(){
+        number = Integer.parseInt(null);
+        letter = null;
     }
 
+    /**
+     * This method checks if a tile is adjacent to the tile passed as a parameter.
+     * CURRENTLY STUBBED
+     * @param checkTile
+     * @return boolean
+     */
+    public boolean isAdjacent(Tile checkTile){
+
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return number + letter;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getLetter() {
+        return letter;
+    }
+
+    private void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setLetter(String letter) {
+        this.letter = letter;
+    }
 }

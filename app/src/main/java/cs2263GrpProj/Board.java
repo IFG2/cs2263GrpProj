@@ -27,8 +27,8 @@ public class Board {
     //instance variables
     public int corporationsPlaced = 0;
     public int size;
-    public static ArrayList<String> tileStash = new ArrayList<String>(108);
-    //public Map? board
+    private static ArrayList<Tile> tileStash = new ArrayList<>(108);
+    public Tile[][] board = new Tile[12][9];
 
     /**
      * Constructor
@@ -38,16 +38,16 @@ public class Board {
     }
 
     /**
-     * Creates the tiles
+     * Creates the tiles and shuffle.
      * @return ArrayList<String> tileStash
      */
-    private ArrayList<String> createTiles(){
-        //ArrayList<String> tileStash = new ArrayList<String>(108);
+    private ArrayList<Tile> createTiles(){
         String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
         //This loop will add 4 cards with a different suit for each value
         for(int i=1; i<=12; i++){
             for(var letter : letters){
-                tileStash.add(Integer.toString(i) + letter);
+                Tile tile = new Tile(i, letter);
+                tileStash.add(tile);
             }
         }
         Collections.shuffle(tileStash);
@@ -59,7 +59,7 @@ public class Board {
      * Used to visualize the tileStash and make sure it was created properly.
      * @param list ArrayList<String>
      */
-    public void tilesToString(ArrayList<String> list){
+    public void tilesToString(ArrayList<Tile> list){
         System.out.println(Arrays.toString(list.toArray()));
     }
 
@@ -67,9 +67,9 @@ public class Board {
      * main() used only for testing prior to implementation of other classes.
      * @param args
      */
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         Board board = new Board();
         board.tilesToString(tileStash);
-    }
+    }*/
 
 }
