@@ -17,19 +17,20 @@
 
 package cs2263GrpProj;
 
-    //imports
+//imports
 
 public class Tile {
 
-    // instance variables
     private int number;
     private String letter;
     private final String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
 
     /**
-     * Constructor
-     * @param number
-     * @param letter
+     * Constructor for a Tile object.
+     *
+     * @param number  Tile number as int.
+     * @param letter  Tile letter as String
+     * @author Paul Gilbreath
      */
     public Tile(int number, String letter){
         this.number = number;
@@ -38,6 +39,8 @@ public class Tile {
 
     /**
      * Null constructor
+     *
+     * @author Paul Gilbreath
      */
     public Tile(){
         number = Integer.parseInt(null);
@@ -47,8 +50,10 @@ public class Tile {
     /**
      * This method checks if a tile is adjacent to the tile passed as a parameter.
      * CURRENTLY STUBBED
-     * @param checkTile
+     *
+     * @param checkTile  Tile object that should be checked.
      * @return boolean
+     * @author Paul Gilbreath
      */
     public boolean isAdjacent(Tile checkTile){
 
@@ -72,7 +77,7 @@ public class Tile {
         this.number = number;
     }
 
-    public void setLetter(String letter) {
+    private void setLetter(String letter) {
         this.letter = letter;
     }
 }
