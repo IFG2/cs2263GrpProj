@@ -17,37 +17,38 @@
 
 package cs2263GrpProj;
 
-// imports
 import java.util.ArrayList;
 
 public class Player {
 
-    //instance variables
     public String name;
-    public ArrayList<String> hand;
+    public ArrayList<Tile> hand;
     public int balance;
     public ArrayList<Stock> stocks;
 
     /**
-     * Minimal Constructor
-     * @param name
+     * Minimal Constructor for the Player object.
+     *
+     * @param name  The name of a Player as a String.
+     * @author Paul Gilbreath
      */
     public Player(String name){
         this.name = name;
-        hand = new ArrayList<String>(6);
+        hand = new ArrayList<Tile>(6);
         balance = 6000;
         stocks = new ArrayList<Stock>(7);
     }
 
     /**
-     * Full Constructor
-     * @param name
-     * @param hand
-     * @param balance
-     * @param stocks
-     * @return
+     * Full Constructor for the Player object.
+     *
+     * @param name  The name of a Player as a String.
+     * @param hand  The player's hand, as an ArrayList of Tiles.
+     * @param balance  The player's balance as an int.
+     * @param stocks  The player's stock holdings as an ArrayList of Stocks.
+     * @author Paul Gilbreath
      */
-    public Player(String name, ArrayList<String> hand, int balance, ArrayList<Stock> stocks){
+    public Player(String name, ArrayList<Tile> hand, int balance, ArrayList<Stock> stocks){
         this.name = name;
         this.hand = hand;
         this.balance = balance;

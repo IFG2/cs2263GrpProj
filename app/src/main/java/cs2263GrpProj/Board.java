@@ -17,21 +17,20 @@
 
 package cs2263GrpProj;
 
-// imports
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
 public class Board {
 
-    //instance variables
     public int corporationsPlaced = 0;
     public int size;
     private static ArrayList<Tile> tileStash = new ArrayList<>(108);
     public Tile[][] board = new Tile[12][9];
 
     /**
-     * Constructor
+     * Constructor to create the tiles and board.
+     * @author Paul Gilbreath
      */
     public Board(){
         createTiles();
@@ -39,7 +38,9 @@ public class Board {
 
     /**
      * Creates the tiles and shuffle.
-     * @return ArrayList<String> tileStash
+     *
+     * @return tileStash  Returns an ArrayList<Tile>.
+     * @author Paul Gilbreath
      */
     private ArrayList<Tile> createTiles(){
         String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
@@ -57,7 +58,9 @@ public class Board {
     /**
      * Method to print the tiles in an ArrayList.
      * Used to visualize the tileStash and make sure it was created properly.
-     * @param list ArrayList<String>
+     *
+     * @param list  ArrayList<String>
+     * @author Paul Gilbreath
      */
     public void tilesToString(ArrayList<Tile> list){
         System.out.println(Arrays.toString(list.toArray()));
@@ -65,7 +68,9 @@ public class Board {
 
     /**
      * main() used only for testing prior to implementation of other classes.
+     *
      * @param args
+     * @author Paul Gilbreath
      */
     /*public static void main(String[] args){
         Board board = new Board();
