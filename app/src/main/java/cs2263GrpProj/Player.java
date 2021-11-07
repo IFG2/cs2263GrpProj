@@ -55,4 +55,28 @@ public class Player {
         this.stocks = stocks;
     }
 
+    /**
+     * This method prints a Player object in a human readable format.
+     *
+     * @return String of contents of a Player object
+     * @author Paul Gilbreath
+     */
+    @Override
+    public String toString(){
+        return name + "\n" + hand + "\n" + balance + "\n" + stocks;
+    }
+
+    /**
+     * This method adds a Tile to the Player hand.
+     *
+     * @param newTile  Tile object
+     * @author Paul Gilbreath
+     */
+    public void addTile(Tile newTile){
+        hand.add(newTile);
+    }
+
+    public ArrayList<Tile> getHand(){
+        return hand;
+    }
 }

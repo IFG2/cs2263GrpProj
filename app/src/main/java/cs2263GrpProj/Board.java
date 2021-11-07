@@ -67,6 +67,16 @@ public class Board {
     }
 
     /**
+     * This method pulls the top Tile from the shuffled tile stash.
+     *
+     * @return Tile from a shuffled pile
+     * @author Paul Gilbreath
+     */
+    public Tile getTile(){
+        return tileStash.remove(0);
+    }
+
+    /**
      * main() used only for testing prior to implementation of other classes.
      *
      * @param args

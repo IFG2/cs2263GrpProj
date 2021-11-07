@@ -17,11 +17,50 @@
 
 package cs2263GrpProj;
 
-// imports
+import java.util.ArrayList;
 
 public class Handler {
+
     public int numPlayers = 0;
+    public static ArrayList<Player> players;
     public int requestNumStock = 0;
     public String filename;
 
+    /**
+     * This method instances the board and creates the players to play the game. The players are given generic names, a
+     * hand of tiles, and $6000. No Corporations are added to the stock holdings.
+     *
+     * @param numPlayers  The number of players to be involved in the game.
+     * @return boolean True if everything went as planned.
+     * @throws Exception if something goes wrong
+     * @author Paul Gilbreath
+     */
+    public boolean startGame(int numPlayers) throws Exception{
+
+        Board board = new Board();
+        players = new ArrayList<Player>(numPlayers);
+
+        for (int i=1; i<=numPlayers; i++){
+            String playerName = "Player" + i;
+            Player player = new Player(playerName);
+            while (player.getHand().size() < 6){
+                player.addTile(board.getTile());
+            }
+            players.add(player);
+        }
+        return true;
+    }
+
+    /**
+     * Used only prior to implementation of other classes.
+     *
+     * @param args
+     * @throws Exception
+     * @author Paul Gilbreath
+     */
+    /*public static void main(String[] args) throws Exception {
+        Handler inst = new Handler();
+        inst.startGame(2);
+        System.out.println(players.get(1).toString());
+    }*/
 }
