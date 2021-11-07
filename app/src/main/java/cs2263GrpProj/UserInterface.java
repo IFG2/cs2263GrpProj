@@ -14,18 +14,33 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package cs2263GrpProj;
 
+ package cs2263GrpProj;
+
+ //Imports
 import javafx.application.Application;
 
-public class App extends Application {
-    // public String getGreeting() {
-    //     return "Hello World!";
-    // }
 
-    // public static void main(String[] args) {
-    //     System.out.println(new App().getGreeting());
-    // }
 
-  
-}
+ //Main Menu 
+   public void mainMenu(Stage stage) {
+      
+
+   }
+
+ //Exit Menu 
+
+
+ //Board 
+
+
+ //Buy Stock 
+
+
+ //Merge
+
+
+ //Sell
+
+
+ //Trade
