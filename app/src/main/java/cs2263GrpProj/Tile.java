@@ -15,7 +15,7 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package cs2263GrpProj;
+//package cs2263GrpProj;
 
 //imports
 
@@ -24,6 +24,7 @@ public class Tile {
     private int number;
     private String letter;
     private final String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
+    private int[] index;
 
     /**
      * Constructor for a Tile object.
@@ -60,6 +61,24 @@ public class Tile {
         return false;
     }
 
+    /**
+     * This method gets the index used by the Board class of a tile as an array with the form [row,column].
+     *
+     * @return index array of the form [row,column]
+     * @author Paul Gilbreath
+     */
+    public int[] getIndex(){
+        index = new int[2];
+        String row = letter;
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] == row) {
+                index[0] = i;
+            }
+        }
+        index[1] = number - 1; /* Remember the Tile number is NOT the index. */
+        return index;
+    }
+
     @Override
     public String toString() {
         return number + letter;
@@ -73,11 +92,11 @@ public class Tile {
         return letter;
     }
 
-    private void setNumber(int number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
-    private void setLetter(String letter) {
+    public void setLetter(String letter) {
         this.letter = letter;
     }
 }

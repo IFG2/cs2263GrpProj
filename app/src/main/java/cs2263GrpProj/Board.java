@@ -15,25 +15,31 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package cs2263GrpProj;
+//package cs2263GrpProj;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Arrays;
 
 public class Board {
 
     public int corporationsPlaced = 0;
     public int size;
     private static ArrayList<Tile> tileStash = new ArrayList<>(108);
-    public Tile[][] board = new Tile[12][9];
+    public Tile[][] board = new Tile[9][12];
 
     /**
-     * Constructor to create the tiles and board.
+     * Constructor to create the tiles and a board of 'null' Tiles.
+     *
      * @author Paul Gilbreath
      */
     public Board(){
         createTiles();
+        Tile nullTile = new Tile(0, "O");
+        for (Tile[] row: board) {
+            Arrays.fill(row, nullTile);
+        }
     }
 
     /**
@@ -77,6 +83,31 @@ public class Board {
             return tileStash.remove(0);
         } else{
             return null;
+        }
+    }
+
+    /**
+     * Method to add a Tile to the board.
+     *
+     * @param tile Tile object to be added to the Board.
+     * @return true
+     */
+    public void addTile(Tile tile){
+        int[] index = tile.getIndex();
+        board[index[0]][index[1]] = tile;
+    }
+
+    /**
+     * Method to visualize the board's current tiles while doing implementation tasks.
+     *
+     * @author Paul Gilbreath
+     */
+    public void visualizeBoard(){
+        for (Tile[] a : board) {
+            for (Tile i : a) {
+                System.out.print(i.toString() + "\t");
+            }
+            System.out.println("\n");
         }
     }
 

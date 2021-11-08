@@ -15,7 +15,7 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package cs2263GrpProj;
+//package cs2263GrpProj;
 
 import java.util.ArrayList;
 
@@ -71,6 +71,10 @@ public class Handler {
         }
     }
 
+    public boolean playTile(Tile tile){
+
+    }
+
     /**
      * Used only prior to implementation of other classes.
      *
@@ -78,9 +82,16 @@ public class Handler {
      * @throws Exception
      * @author Paul Gilbreath
      */
-    /*public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         Handler inst = new Handler();
         inst.startGame(2);
-        System.out.println(players.get(1).toString());
-    }*/
+        //System.out.println(players.get(1).toString()); // test for use case #1
+        //System.out.println(players.get(1).getHand()); // print the Player hand
+        //System.out.println(Arrays.toString(players.get(1).getHand().get(0).getIndex())); // print the index[] of Tile at hand index=0
+        /*for (int i=0; i <45; i++){
+            inst.board.addTile(inst.board.getTile());
+        }
+        inst.board.visualizeBoard();*/ //make sure the board is correctly visualized and addTile works correctly. Note: numPlayers=0
+
+    }
 }
