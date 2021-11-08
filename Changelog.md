@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Changelog.md
   - .gitignore
 - Initiated new gradle project.
+- Stubbed the Board, Corporation, Handler, Player, Stock, and Tile classes.
+- Added Use Case #1, #2 implementation.
 
 <!--
 ~~## [1.0.0] - 2021-09-30

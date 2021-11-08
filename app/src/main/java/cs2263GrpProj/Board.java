@@ -73,7 +73,11 @@ public class Board {
      * @author Paul Gilbreath
      */
     public Tile getTile(){
-        return tileStash.remove(0);
+        if (tileStash.size() > 0) {
+            return tileStash.remove(0);
+        } else{
+            return null;
+        }
     }
 
     /**

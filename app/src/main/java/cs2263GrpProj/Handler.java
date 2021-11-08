@@ -25,6 +25,7 @@ public class Handler {
     public static ArrayList<Player> players;
     public int requestNumStock = 0;
     public String filename;
+    public Board board;
 
     /**
      * This method instances the board and creates the players to play the game. The players are given generic names, a
@@ -32,12 +33,12 @@ public class Handler {
      *
      * @param numPlayers  The number of players to be involved in the game.
      * @return boolean True if everything went as planned.
-     * @throws Exception if something goes wrong
+     * @throws Exception  if something goes wrong
      * @author Paul Gilbreath
      */
     public boolean startGame(int numPlayers) throws Exception{
 
-        Board board = new Board();
+        board = new Board();
         players = new ArrayList<Player>(numPlayers);
 
         for (int i=1; i<=numPlayers; i++){
@@ -49,6 +50,25 @@ public class Handler {
             players.add(player);
         }
         return true;
+    }
+
+    /**
+     * This method requests a tile to be added to a Player's hand. It returns a logical of the addition status based on
+     * the ability to add a Tile to the hand (maximum of 6 Tiles).
+     *
+     * @param player  Player object which contains a hand of tiles.
+     * @return boolean status of tile request
+     * @throws Exception  if something goes wrong.
+     * @author Paul Gilbreath
+     */
+    public boolean requestTile(Player player) throws Exception{
+        int handSize = player.getHand().size();
+        if (handSize < 6) {
+            player.addTile(board.getTile());
+            return true;
+        } else{
+            return false;
+        }
     }
 
     /**
