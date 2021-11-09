@@ -15,12 +15,11 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-//package cs2263GrpProj;
+package cs2263GrpProj;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Arrays;
 
 public class Board {
 
@@ -28,6 +27,7 @@ public class Board {
     public int size;
     private static ArrayList<Tile> tileStash = new ArrayList<>(108);
     public Tile[][] board = new Tile[9][12];
+    public ArrayList<Corporation> corporations;
 
     /**
      * Constructor to create the tiles and a board of 'null' Tiles.
@@ -51,8 +51,8 @@ public class Board {
     private ArrayList<Tile> createTiles(){
         String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
         //This loop will add 4 cards with a different suit for each value
-        for(int i=1; i<=12; i++){
-            for(var letter : letters){
+        for (int i=1; i<=12; i++){
+            for (String letter : letters){
                 Tile tile = new Tile(i, letter);
                 tileStash.add(tile);
             }
@@ -91,6 +91,7 @@ public class Board {
      *
      * @param tile Tile object to be added to the Board.
      * @return true
+     * @author Paul Gilbreath
      */
     public void addTile(Tile tile){
         int[] index = tile.getIndex();
@@ -98,7 +99,85 @@ public class Board {
     }
 
     /**
-     * Method to visualize the board's current tiles while doing implementation tasks.
+     * This method checks to see if a potential Tile to be played would require a merge with a current Tile on the
+     * Board. It returns an ArrayList<Tile> currently on the Board that are adjacent.
+     *      Note: if return ArrayList length = 0, there are no tiles near the potential Tile.
+     *            if return ArrayList length = 1, the Tile will either create a new Corporation or add to an existing one.
+     *            if return ArrayList length = >1, a potential merge will need to take place.
+     *
+     * @param newTile potential Tile to be played
+     * @return ArrayList<Tile> that are adjacent to the potential Tile.
+     * @author Paul Gilbreath
+     */
+    public ArrayList<Tile> checkMerge(Tile newTile){
+        ArrayList<Tile> adjacentTiles = new ArrayList<Tile>();
+        for (Tile[] row : board) {
+            for (Tile tile : row) {
+                if (newTile.isAdjacent(tile) == true) {
+                    adjacentTiles.add(tile);
+                }
+            }
+        }
+        return adjacentTiles;
+    }
+
+    /**
+     * This method takes an ArrayList<Tile> currently on the board that are adjacent to a Tile to be potentially played
+     * and finds out if any of the Tile objects are currently part of a corporation. It returns ArrayList<Corporation>
+     * that are potentially involved in a merger.
+     *      Note: if return ArrayList length = 0, a new Corporation will need to be created.
+     *            if return ArrayList length = 1, a Tile should be added to an existing Corporation.
+     *            if return ArrayList length = >1, a potential merge of two Corporation will need to happen.
+     *
+     * @param adjacentTiles  ArrayList<Tile> that need to be tested for involvement in a current established
+     *                        Corporation.
+     * @return ArrayList<Corporation>
+     * @author Paul Gilbreath
+     */
+    public ArrayList<Corporation> findCorporations(ArrayList<Tile> adjacentTiles){
+        ArrayList<Corporation> adjacentCorporations = new ArrayList<Corporation>();
+        ArrayList<Tile> corporationTiles = new ArrayList<Tile>();
+
+        for (Corporation corporation : corporations) {
+            corporationTiles = corporation.getTiles();
+            for (Tile corpTile : corporationTiles){
+                for (Tile collTile : adjacentTiles){
+                    if (collTile.isAdjacent(corpTile) == true){
+                        adjacentCorporations.add(corporation);
+                    }
+                }
+            }
+        }
+        return adjacentCorporations;
+    }
+
+    /**
+     * This method takes an ArrayList<Corporation> and checks to see if the Corporations can be merged together. It
+     * relies on the isSafe() method in the Corporation class.
+     *
+     * @param adjacentCorporations  ArrayList<Corporation> that are potentially to be merged.
+     * @return boolean if the Corporations can be merged.
+     * @author Paul Gilbreath
+     */
+    public boolean checkValid(ArrayList<Corporation> adjacentCorporations){
+        if (adjacentCorporations.size() <= 1){ /* No merge to happen, therefore no need to check validity. */
+            return true;
+        }
+        int numberSafeCorporations = 0;
+        for (Corporation corporation : adjacentCorporations) {
+            if (corporation.isSafe() == true) {
+                numberSafeCorporations++;
+            }
+        }
+        if (numberSafeCorporations > 1 ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Method to visualize the board's current tiles while doing implementation tasks. Outputs the board to the console.
      *
      * @author Paul Gilbreath
      */

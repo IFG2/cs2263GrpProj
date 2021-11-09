@@ -15,14 +15,14 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-//package cs2263GrpProj;
+package cs2263GrpProj;
 
 import java.util.ArrayList;
 
 public class Handler {
 
     public int numPlayers = 0;
-    public static ArrayList<Player> players;
+    public ArrayList<Player> players;
     public int requestNumStock = 0;
     public String filename;
     public Board board;
@@ -71,8 +71,29 @@ public class Handler {
         }
     }
 
+    /**
+     * This method tries to play a Tile to the Board and returns a boolean on the status of success. It fails to play
+     * the Tile if two adjacent Corporations are each safe.
+     *
+     * @param tile Tile object potentially played to the Board.
+     * @return boolean of the success of playing the Tile.
+     * @author Paul Gilbreath
+     */
     public boolean playTile(Tile tile){
-
+        ArrayList<Tile> adjacentTiles = board.checkMerge(tile);
+        /* No Tile on the Board adjacent to the proposed Tile. */
+        if (adjacentTiles.isEmpty() == true){
+            board.addTile(tile);
+            return true;
+        }
+        /* At lease two Corporations that are safe from mergers, so Tile is invalid on Board. Else, place the Tile.*/
+        ArrayList<Corporation> adjacentCorporations = board.findCorporations(adjacentTiles);
+        if (board.checkValid(adjacentCorporations) == false){
+            return false;
+        } else {
+            board.addTile(tile);
+            return true;
+        }
     }
 
     /**
@@ -82,16 +103,23 @@ public class Handler {
      * @throws Exception
      * @author Paul Gilbreath
      */
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         Handler inst = new Handler();
         inst.startGame(2);
         //System.out.println(players.get(1).toString()); // test for use case #1
         //System.out.println(players.get(1).getHand()); // print the Player hand
         //System.out.println(Arrays.toString(players.get(1).getHand().get(0).getIndex())); // print the index[] of Tile at hand index=0
-        /*for (int i=0; i <45; i++){
+        for (int i=0; i<45; i++){
             inst.board.addTile(inst.board.getTile());
         }
-        inst.board.visualizeBoard();*/ //make sure the board is correctly visualized and addTile works correctly. Note: numPlayers=0
-
-    }
+        inst.board.visualizeBoard(); //make sure the board is correctly visualized and addTile works correctly. Note: numPlayers=0
+        Tile firstTile = inst.board.getTile();
+        for (int i=0; i<80; i++) {
+            Tile nextTile = inst.board.getTile();
+            System.out.println(firstTile + " " + nextTile + "   " + firstTile.isAdjacent(nextTile));
+        } //checks the isAdjacent() method.
+        Tile nullTile = new Tile(0, "O");
+        Tile nextTile = inst.board.getTile();
+        System.out.println(nullTile + " " + nextTile + "   " + nullTile.isAdjacent(nextTile));
+    }*/
 }

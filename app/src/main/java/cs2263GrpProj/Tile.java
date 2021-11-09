@@ -15,9 +15,9 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-//package cs2263GrpProj;
+package cs2263GrpProj;
 
-//imports
+import java.lang.Math;
 
 public class Tile {
 
@@ -49,16 +49,28 @@ public class Tile {
     }
 
     /**
-     * This method checks if a tile is adjacent to the tile passed as a parameter.
-     * CURRENTLY STUBBED
+     * This method checks if the Tile object is adjacent to the Tile passed as a parameter.
      *
      * @param checkTile  Tile object that should be checked.
      * @return boolean
      * @author Paul Gilbreath
      */
     public boolean isAdjacent(Tile checkTile){
-
-        return false;
+        int[] checkIndex = checkTile.getIndex();
+        int diffNumber = number - 1 - checkIndex[1];
+        int currentLetter = -2;
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] == letter) {
+                currentLetter = i;
+            }
+        }
+        int diffLetter = currentLetter - checkIndex[0];
+        if ((Math.abs(diffNumber) <= 1 && Math.abs(diffLetter) == 0) ||
+                (Math.abs(diffNumber) == 0 && Math.abs(diffLetter) <= 1)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -69,9 +81,8 @@ public class Tile {
      */
     public int[] getIndex(){
         index = new int[2];
-        String row = letter;
         for (int i = 0; i < letters.length; i++) {
-            if (letters[i] == row) {
+            if (letters[i] == letter) {
                 index[0] = i;
             }
         }
