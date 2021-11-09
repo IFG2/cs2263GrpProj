@@ -17,13 +17,14 @@
 
 package cs2263GrpProj;
 
-//imports
+import java.lang.Math;
 
 public class Tile {
 
     private int number;
     private String letter;
     private final String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
+    private int[] index;
 
     /**
      * Constructor for a Tile object.
@@ -48,16 +49,45 @@ public class Tile {
     }
 
     /**
-     * This method checks if a tile is adjacent to the tile passed as a parameter.
-     * CURRENTLY STUBBED
+     * This method checks if the Tile object is adjacent to the Tile passed as a parameter.
      *
      * @param checkTile  Tile object that should be checked.
      * @return boolean
      * @author Paul Gilbreath
      */
     public boolean isAdjacent(Tile checkTile){
+        int[] checkIndex = checkTile.getIndex();
+        int diffNumber = number - 1 - checkIndex[1];
+        int currentLetter = -2;
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] == letter) {
+                currentLetter = i;
+            }
+        }
+        int diffLetter = currentLetter - checkIndex[0];
+        if ((Math.abs(diffNumber) <= 1 && Math.abs(diffLetter) == 0) ||
+                (Math.abs(diffNumber) == 0 && Math.abs(diffLetter) <= 1)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        return false;
+    /**
+     * This method gets the index used by the Board class of a tile as an array with the form [row,column].
+     *
+     * @return index array of the form [row,column]
+     * @author Paul Gilbreath
+     */
+    public int[] getIndex(){
+        index = new int[2];
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] == letter) {
+                index[0] = i;
+            }
+        }
+        index[1] = number - 1; /* Remember the Tile number is NOT the index. */
+        return index;
     }
 
     @Override
@@ -73,11 +103,11 @@ public class Tile {
         return letter;
     }
 
-    private void setNumber(int number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
-    private void setLetter(String letter) {
+    public void setLetter(String letter) {
         this.letter = letter;
     }
 }
