@@ -30,6 +30,8 @@ public class Handler {
     /**
      * This method instances the board and creates the players to play the game. The players are given generic names, a
      * hand of tiles, and $6000. No Corporations are added to the stock holdings.
+     *      Note: if return true, the game has successfully been started
+     *
      *
      * @param numPlayers  The number of players to be involved in the game.
      * @return boolean True if everything went as planned.
@@ -55,6 +57,7 @@ public class Handler {
     /**
      * This method requests a tile to be added to a Player's hand. It returns a logical of the addition status based on
      * the ability to add a Tile to the hand (maximum of 6 Tiles).
+     *      Note: if false, then player hand already has 6 Tiles.
      *
      * @param player  Player object which contains a hand of tiles.
      * @return boolean status of tile request
@@ -74,6 +77,7 @@ public class Handler {
     /**
      * This method tries to play a Tile to the Board and returns a boolean on the status of success. It fails to play
      * the Tile if two adjacent Corporations are each safe.
+     *      Note: if return false, then at least two Corporations adjacent to the Tile are safe.
      *
      * @param tile Tile object potentially played to the Board.
      * @return boolean of the success of playing the Tile.

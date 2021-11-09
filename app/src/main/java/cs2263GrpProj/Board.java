@@ -26,8 +26,8 @@ public class Board {
     public int corporationsPlaced = 0;
     public int size;
     private static ArrayList<Tile> tileStash = new ArrayList<>(108);
-    public Tile[][] board = new Tile[9][12];
     public ArrayList<Corporation> corporations;
+    public Tile[][] board = new Tile[9][12];
 
     /**
      * Constructor to create the tiles and a board of 'null' Tiles.
@@ -40,6 +40,20 @@ public class Board {
         for (Tile[] row: board) {
             Arrays.fill(row, nullTile);
         }
+    }
+
+    /**
+     * Full constructor for the Board object.
+     *
+     * @param tileStash  ArrayList<Tile> of unplayed Tiles that have not been drawn into a Player hand or discarded.
+     * @param corporations  ArrayList<Corporation> of Corporation objects currently in play.
+     * @param board  2D Array of the Tile objects on the board.
+     * @author Paul Gilbreath
+     */
+    public Board(ArrayList<Tile> tileStash, ArrayList<Corporation> corporations, Tile[][] board){
+        this.tileStash = tileStash;
+        this.corporations = corporations;
+        this.board = board;
     }
 
     /**
