@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class Handler {
 
     public int numPlayers = 0;
-    public static ArrayList<Player> players;
+    public ArrayList<Player> players;
     public int requestNumStock = 0;
     public String filename;
     public Board board;
@@ -30,6 +30,8 @@ public class Handler {
     /**
      * This method instances the board and creates the players to play the game. The players are given generic names, a
      * hand of tiles, and $6000. No Corporations are added to the stock holdings.
+     *      Note: if return true, the game has successfully been started
+     *
      *
      * @param numPlayers  The number of players to be involved in the game.
      * @return boolean True if everything went as planned.
@@ -55,6 +57,7 @@ public class Handler {
     /**
      * This method requests a tile to be added to a Player's hand. It returns a logical of the addition status based on
      * the ability to add a Tile to the hand (maximum of 6 Tiles).
+     *      Note: if false, then player hand already has 6 Tiles.
      *
      * @param player  Player object which contains a hand of tiles.
      * @return boolean status of tile request
@@ -72,6 +75,32 @@ public class Handler {
     }
 
     /**
+     * This method tries to play a Tile to the Board and returns a boolean on the status of success. It fails to play
+     * the Tile if two adjacent Corporations are each safe.
+     *      Note: if return false, then at least two Corporations adjacent to the Tile are safe.
+     *
+     * @param tile Tile object potentially played to the Board.
+     * @return boolean of the success of playing the Tile.
+     * @author Paul Gilbreath
+     */
+    public boolean playTile(Tile tile){
+        ArrayList<Tile> adjacentTiles = board.checkMerge(tile);
+        /* No Tile on the Board adjacent to the proposed Tile. */
+        if (adjacentTiles.isEmpty() == true){
+            board.addTile(tile);
+            return true;
+        }
+        /* At lease two Corporations that are safe from mergers, so Tile is invalid on Board. Else, place the Tile.*/
+        ArrayList<Corporation> adjacentCorporations = board.findCorporations(adjacentTiles);
+        if (board.checkValid(adjacentCorporations) == false){
+            return false;
+        } else {
+            board.addTile(tile);
+            return true;
+        }
+    }
+
+    /**
      * Used only prior to implementation of other classes.
      *
      * @param args
@@ -81,6 +110,20 @@ public class Handler {
     /*public static void main(String[] args) throws Exception {
         Handler inst = new Handler();
         inst.startGame(2);
-        System.out.println(players.get(1).toString());
+        //System.out.println(players.get(1).toString()); // test for use case #1
+        //System.out.println(players.get(1).getHand()); // print the Player hand
+        //System.out.println(Arrays.toString(players.get(1).getHand().get(0).getIndex())); // print the index[] of Tile at hand index=0
+        for (int i=0; i<45; i++){
+            inst.board.addTile(inst.board.getTile());
+        }
+        inst.board.visualizeBoard(); //make sure the board is correctly visualized and addTile works correctly. Note: numPlayers=0
+        Tile firstTile = inst.board.getTile();
+        for (int i=0; i<80; i++) {
+            Tile nextTile = inst.board.getTile();
+            System.out.println(firstTile + " " + nextTile + "   " + firstTile.isAdjacent(nextTile));
+        } //checks the isAdjacent() method.
+        Tile nullTile = new Tile(0, "O");
+        Tile nextTile = inst.board.getTile();
+        System.out.println(nullTile + " " + nextTile + "   " + nullTile.isAdjacent(nextTile));
     }*/
 }
