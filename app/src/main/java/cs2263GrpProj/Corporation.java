@@ -11,8 +11,7 @@ public class Corporation {
      */
     public String corporationName;
     public int corporationSize;
-    public boolean isSafe;
-    public boolean isDefunct;
+
 
     /**
      * Basic constructor
@@ -24,19 +23,20 @@ public class Corporation {
 
     /**
      * Complete constructor
-     * @param name
-     * @param size
-     * @param isSafe
-     * @param isDefunct
+     * @param name Name of the corporation
+     * @param size Size (amount of tiles it controls) of the
+     *             corporation
      */
-    public Corporation(String name, int size, boolean isSafe, boolean isDefunct){
+    public Corporation(String name, int size){
         this.corporationName = name;
         this.corporationSize = size;
-        this.isSafe = isSafe;
-        this.isDefunct = isDefunct;
+
     }
-    public int getCorporationSize() {
-        return corporationSize;
+
+    public boolean isSafe(){
+        if(corporationSize >=11 ){
+            return true;
+        }else{return false;}
     }
 
     /**
@@ -54,11 +54,8 @@ public class Corporation {
         this.corporationSize = corporationSize;
     }
 
-    public void setDefunct(boolean defunct) {
-        isDefunct = defunct;
+    public int getCorporationSize() {
+        return corporationSize;
     }
 
-    public void setSafe(boolean safe) {
-        isSafe = safe;
-    }
 }
