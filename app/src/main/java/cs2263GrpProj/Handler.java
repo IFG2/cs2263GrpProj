@@ -17,6 +17,7 @@
 
 package cs2263GrpProj;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Handler {
@@ -28,17 +29,34 @@ public class Handler {
     public Board board;
 
     /**
+     * Empty constructor for the Handler class. This is used when starting a new game.
+     */
+    public Handler(){}
+
+    /**
+     * Full constructor for the Handler class. This contains everything to play the game and should be called when
+     * resuming a saved game.
+     *
+     * @param players  ArrayList<Player> which contain the Player objects to resume a saved game.
+     * @param board  Board object which contains tileStash, 2d Array of Tile on played on board, and Corporation list.
+     * @author Paul Gilbreath
+     */
+    public Handler(ArrayList<Player> players, Board board){
+        this.players = players;
+        this.board = board;
+    }
+
+    /**
      * This method instances the board and creates the players to play the game. The players are given generic names, a
      * hand of tiles, and $6000. No Corporations are added to the stock holdings.
      *      Note: if return true, the game has successfully been started
      *
      *
      * @param numPlayers  The number of players to be involved in the game.
-     * @return boolean True if everything went as planned.
      * @throws Exception  if something goes wrong
      * @author Paul Gilbreath
      */
-    public boolean startGame(int numPlayers) throws Exception{
+    public void startGame(int numPlayers) throws Exception{
 
         board = new Board();
         players = new ArrayList<Player>(numPlayers);
@@ -51,7 +69,6 @@ public class Handler {
             }
             players.add(player);
         }
-        return true;
     }
 
     /**
@@ -101,19 +118,46 @@ public class Handler {
     }
 
     /**
+     * This method saves a game to a new filename passed as a String.
+     *
+     * @param filename  String of the filename.
+     * @param gameHandler  Handler object which contains everything needed to recreate the game at another time.
+     * @throws IOException
+     * @author Paul Gilbreath
+     */
+    public void saveGame(String filename, Handler gameHandler) throws IOException {
+        IOManager manager = new IOManager();
+        manager.writeData(filename, gameHandler);
+    }
+
+    /**
+     * This method creates a new Handler instance from a file.
+     *
+     * @param filepath  String of the path to the .json file that holds a game to load.
+     * @return a Handler instance for a previous game.
+     * @throws IOException
+     * @author Paul Gilbreath
+     */
+    public Handler loadGame(String filepath) throws IOException {
+        IOManager manager = new IOManager();
+        Handler gameHandler = manager.readData(filepath);
+        return gameHandler;
+    }
+
+    /**
      * Used only prior to implementation of other classes.
      *
      * @param args
      * @throws Exception
      * @author Paul Gilbreath
      */
-    /*public static void main(String[] args) throws Exception {
-        Handler inst = new Handler();
+    public static void main(String[] args) throws Exception {
+        /*Handler inst = new Handler();
         inst.startGame(2);
         //System.out.println(players.get(1).toString()); // test for use case #1
         //System.out.println(players.get(1).getHand()); // print the Player hand
         //System.out.println(Arrays.toString(players.get(1).getHand().get(0).getIndex())); // print the index[] of Tile at hand index=0
-        for (int i=0; i<45; i++){
+        /*for (int i=0; i<45; i++){
             inst.board.addTile(inst.board.getTile());
         }
         inst.board.visualizeBoard(); //make sure the board is correctly visualized and addTile works correctly. Note: numPlayers=0
@@ -124,6 +168,6 @@ public class Handler {
         } //checks the isAdjacent() method.
         Tile nullTile = new Tile(0, "O");
         Tile nextTile = inst.board.getTile();
-        System.out.println(nullTile + " " + nextTile + "   " + nullTile.isAdjacent(nextTile));
-    }*/
+        System.out.println(nullTile + " " + nextTile + "   " + nullTile.isAdjacent(nextTile));*/
+    }
 }
