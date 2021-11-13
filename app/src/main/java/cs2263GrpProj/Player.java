@@ -29,10 +29,10 @@ public class Player {
     /**
      * Minimal Constructor for the Player object.
      *
-     * @param name  The name of a Player as a String.
+     * @param name The name of a Player as a String.
      * @author Paul Gilbreath
      */
-    public Player(String name){
+    public Player(String name) {
         this.name = name;
         hand = new ArrayList<Tile>(6);
         balance = 6000;
@@ -42,13 +42,13 @@ public class Player {
     /**
      * Full Constructor for the Player object.
      *
-     * @param name  The name of a Player as a String.
-     * @param hand  The player's hand, as an ArrayList of Tiles.
-     * @param balance  The player's balance as an int.
+     * @param name    The name of a Player as a String.
+     * @param hand    The player's hand, as an ArrayList of Tiles.
+     * @param balance The player's balance as an int.
      * @param stocks  The player's stock holdings as an ArrayList of Stocks.
      * @author Paul Gilbreath
      */
-    public Player(String name, ArrayList<Tile> hand, int balance, ArrayList<Stock> stocks){
+    public Player(String name, ArrayList<Tile> hand, int balance, ArrayList<Stock> stocks) {
         this.name = name;
         this.hand = hand;
         this.balance = balance;
@@ -62,21 +62,22 @@ public class Player {
      * @author Paul Gilbreath
      */
     @Override
-    public String toString(){
+    public String toString() {
         return name + "\n" + hand + "\n" + balance + "\n" + stocks;
     }
 
     /**
      * This method adds a Tile to the Player hand.
      *
-     * @param newTile  Tile object
+     * @param newTile Tile object
      * @author Paul Gilbreath
      */
-    public void addTile(Tile newTile){
+    public void addTile(Tile newTile) {
         hand.add(newTile);
     }
 
-    public ArrayList<Tile> getHand(){
+    public ArrayList<Tile> getHand() {
         return hand;
     }
+
 }

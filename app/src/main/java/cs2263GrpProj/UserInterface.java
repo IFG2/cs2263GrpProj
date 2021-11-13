@@ -31,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.CacheRequest;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -58,6 +59,8 @@ public class UserInterface {
    * @author Kaiden Evans
    */
   public void mainMenu(Stage stage) {
+    Handler gameHandler = new Handler();
+    gameHandler.startGame(2);
     stage.setTitle("Main Menu");
     Label numOfPlayers = new Label("Please input the number of players.");
     TextField numPlayerInput = new TextField();
@@ -83,11 +86,11 @@ public class UserInterface {
     stage.show();
 
     startGame.setOnAction(value -> {
-      // acquireBoardScene(stage);
+      boardScene(stage, gameHandler);
     });
 
     loadGame.setOnAction(value -> {
-
+      gameHandler.loadGame();
     });
 
     exitGame.setOnAction(value -> {
@@ -95,7 +98,7 @@ public class UserInterface {
     });
   }
 
-  public void exitMenu(Stage stage) {
+  public void exitMenu(Stage stage, Handler gameHandler) {
     stage.setTitle("Exit Menu");
     Label exitMessage = new Label("Are you sure you want to exit?" + "\r\n" + "Unsaved progress will be lost.");
     exitMessage.setPadding(new Insets(10));
@@ -119,7 +122,7 @@ public class UserInterface {
     stage.show();
 
     cancelExit.setOnAction(value -> {
-      // acquireBoardScene(stage);
+      boardScene(stage, gameHandler);
     });
 
     exit.setOnAction(value -> {
@@ -134,7 +137,7 @@ public class UserInterface {
    *              scene.
    * @author Kaiden Evans
    */
-  public void boardScene(Stage stage) {
+  public void boardScene(Stage stage, Handler gameHandler) {
     stage.setTitle("Acquire");
     MenuBar menuBar = new MenuBar();
     Menu fileMenu = new Menu("File");
@@ -226,23 +229,23 @@ public class UserInterface {
     });
 
     drawTile.setOnAction(value -> {
-
+      // gameHandler.requestTile();
     });
 
     buyStock.setOnAction(value -> {
-      // buyStockScene(stage);
+      buyScene(stage, gameHandler);
     });
 
     saveOption.setOnAction(value -> {
-
+      // gameHandler.saveGame();
     });
 
     loadOption.setOnAction(value -> {
-
+      // gameHandler.loadGame();
     });
 
     exitOption.setOnAction(value -> {
-      // exitMenu(stage);
+      exitMenu(stage, gameHandler);
     });
   }
 
@@ -253,7 +256,7 @@ public class UserInterface {
    *              scene.
    * @author Kaiden Evans
    */
-  public void buyScene(Stage stage) {
+  public void buyScene(Stage stage, Handler gameHandler) {
     stage.setTitle("Buying Stock");
 
     Label stocksAvailableLabel = new Label("Stocks Available");
@@ -294,11 +297,11 @@ public class UserInterface {
     stage.show();
 
     buyStock.setOnAction(value -> {
-      // buyScene(stage);
+      buyScene(stage, gameHandler);
     });
 
     cancelPurchase.setOnAction(value -> {
-      // acquireBoardScene(stage);
+      boardScene(stage, gameHandler);
     });
   }
 
@@ -309,7 +312,7 @@ public class UserInterface {
    *              scene.
    * @author Kaiden Evans
    */
-  public void sellScene(Stage stage) {
+  public void sellScene(Stage stage, Handler gameHandler) {
     stage.setTitle("Selling Stock");
 
     Label stocksAvailableLabel = new Label("Stocks Available");
@@ -350,11 +353,11 @@ public class UserInterface {
     stage.show();
 
     sellStock.setOnAction(value -> {
-      // sellScene(stage);
+      sellScene(stage, gameHandler);
     });
 
     cancelTransaction.setOnAction(value -> {
-      // mergeScene(stage);
+      mergeScene(stage, gameHandler);
     });
   }
 
@@ -365,7 +368,7 @@ public class UserInterface {
    *              scene.
    * @author Kaiden Evans
    */
-  public void tradeScene(Stage stage) {
+  public void tradeScene(Stage stage, Handler gameHandler) {
     stage.setTitle("Trading Stock");
 
     Button tradeStock = new Button("Trade");
@@ -429,7 +432,7 @@ public class UserInterface {
     });
 
     cancelTrade.setOnAction(value -> {
-      // mergeScene(stage);
+      mergeScene(stage, gameHandler);
     });
   }
 
@@ -439,7 +442,7 @@ public class UserInterface {
    * @param stage Takes in a stage object to create and display the merge scene.
    * @author Kaiden Evans
    */
-  public void mergeScene(Stage stage) {
+  public void mergeScene(Stage stage, Handler gameHandler) {
     stage.setTitle("Corporation Merge");
 
     Button mergeSell = new Button("Sell");
@@ -471,16 +474,19 @@ public class UserInterface {
     stage.show();
 
     mergeSell.setOnAction(value -> {
-
+      sellScene(stage, gameHandler);
     });
+
     mergeTrade.setOnAction(value -> {
-
+      tradeScene(stage, gameHandler);
     });
+
     mergeHold.setOnAction(value -> {
 
     });
+
     endMerge.setOnAction(value -> {
-      // acquireBoardScene(stage);
+      boardScene(stage, gameHandler);
     });
 
   }

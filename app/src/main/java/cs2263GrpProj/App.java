@@ -17,15 +17,49 @@
 package cs2263GrpProj;
 
 import javafx.application.Application;
+import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import java.io.IOException;
+import java.net.CacheRequest;
+import java.util.List;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.geometry.*;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.GridPane;
 
 public class App extends Application {
-    // public String getGreeting() {
-    //     return "Hello World!";
-    // }
+    public String getGreeting() {
+        return "Hello World!";
+    }
 
     // public static void main(String[] args) {
-    //     System.out.println(new App().getGreeting());
+    // System.out.println(new App().getGreeting());
     // }
 
-  
+    @Override
+    public void start(Stage stage) throws Exception {
+        UserInterface gameUI = new UserInterface();
+        gameUI.mainMenu(stage);
+
+    }
+
 }
