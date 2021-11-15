@@ -1,34 +1,31 @@
 # cs2263GrpProj
-Group Project for ISU CS2263 - Advanced Object-Oriented Programming
+Group Project for ISU CS2263 - Advanced Object-Oriented Programming 
 
 # Description
-This app creates an interactive game of the boardgame Acquire.
+This project creates a digital version of the board game Acquire.
 
 # Installation
-To install this project, first navigate to the desired parent directory. Then, clone the repo onto your device using the command below:
+To install this project, first nagivate to the desired parent directory. Then, clone the repo onto your device using the command below:
 `git clone https://github.com/IFG2/cs2263GrpProj`
 Next, navigate to the newly cloned directory and build the project with the following:
 `gradle build`
 
 # Usage
-Run the project with the following:
-`gradle run`
-This should open a UI and you can begin playing Acquire within that. 
-
-More later.
+Nothing yet.
 
 # Contribute
-Since this is a class assignment, you may not contribute to the project at this time.
+Thanks for wanting to contribute, but as this is a classroom assignment, it's probably not appropriate for anyone outside of our group to contribute. :)
 
 # Credits
-- [Kaiden Evans]() - Idaho State University informatics student
-- [Keagan York]() - Idaho State University computer science student
-- [Paul Gilbreath](https://github.com/gilbpaul/) - Idaho State University computer science student
+Idaho State University computer science students
+- Paul
+- Kaiden
+- Keagan
 
 # License
 MIT License
 
-Copyright (c) 2021 IFG2
+Copyright (c) 2021
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -47,3 +44,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
