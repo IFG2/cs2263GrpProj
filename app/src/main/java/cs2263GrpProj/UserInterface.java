@@ -58,7 +58,7 @@ public class UserInterface {
    *              scene.
    * @author Kaiden Evans
    */
-  public void mainMenu(Stage stage) {
+  public void mainMenu(Stage stage) throws Exception {
     Handler gameHandler = new Handler();
     gameHandler.startGame(2);
     stage.setTitle("Main Menu");
