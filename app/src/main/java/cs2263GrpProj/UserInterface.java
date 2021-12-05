@@ -90,7 +90,7 @@ public class UserInterface {
     });
 
     loadGame.setOnAction(value -> {
-      gameHandler.loadGame();
+      //gameHandler.loadGame();
     });
 
     exitGame.setOnAction(value -> {
@@ -173,19 +173,16 @@ public class UserInterface {
     player2.setPadding(new Insets(10));
 
     GridPane gameBoard = new GridPane();
-    // gameBoard.setPrefSize(10,10);
-
-    // for (int i = 0; i < 10; i++){
-    // for (int j = 0; j < 10; j++){
-    // Rectangle gameTile = new Rectangle(15,15);
-    // gameTile.setFill(Color.GRAY);
-
-    // Text tileText = new Text("Empty");
-    // StackPane newTilePane = new StackPane(gameTile, tileText, j, i);
-    // gameBoard.add(newTilePane);
-
-    // }
-    // }
+    gameBoard.setPrefSize(9, 12);
+    gameBoard.setVgap(5);
+    gameBoard.setHgap(5);
+    for (int i = 0; i < 12; i++) {
+      for (Character j = 'A'; j < 'J'; j++) {
+        Button boardBtn = new Button((i + 1) + "" + j);
+        boardBtn.setMinSize(50, 50);
+        gameBoard.add(boardBtn, j, i, 1, 1);
+      }
+    }
 
     Label corpInfo = new Label("Corporation Information");
     Label corp1 = new Label("Corporation 1" + "\r\n" + "Stock Price: " + "\r\n" + "Stocks Available: ");
@@ -221,11 +218,11 @@ public class UserInterface {
     stage.show();
 
     startTurn.setOnAction(value -> {
-
+      //gameHandler.players.get(0);
     });
 
     endTurn.setOnAction(value -> {
-
+      //gameHandler.players.get(1);
     });
 
     drawTile.setOnAction(value -> {
@@ -298,6 +295,7 @@ public class UserInterface {
 
     buyStock.setOnAction(value -> {
       buyScene(stage, gameHandler);
+
     });
 
     cancelPurchase.setOnAction(value -> {
